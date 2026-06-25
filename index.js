@@ -35,6 +35,7 @@ client.once("clientReady", () => {
 });
 
 client.on("voiceStateUpdate", async (oldState, newState) => {
+console.log("Voice event:", newState.channelId);
   try {
     const config = CREATE_CHANNELS[newState.channelId];
 
