@@ -65,5 +65,23 @@ console.log("Voice event:", newState.channelId);
     console.error(err);
   }
 });
+client.on("error", console.error);
+client.on("warn", console.warn);
+
+client.on("shardDisconnect", (event) => {
+  console.log("Discord disconnected:", event.code);
+});
+
+client.on("shardReconnecting", () => {
+  console.log("Reconnecting to Discord...");
+});
+
+client.on("shardResume", () => {
+  console.log("Discord connection resumed.");
+});
+
+process.on("unhandledRejection", console.error);
+process.on("uncaughtException", console.error);
+
 
 client.login(process.env.DISCORD_TOKEN)
